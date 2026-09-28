@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kleiner Taschenrechner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 6px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        #ergebnis {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Kleiner Taschenrechner</h1>
+
+    <input type="number" id="zahl1" placeholder="Erste Zahl">
+
+    <select id="operator">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+
+    <input type="number" id="zahl2" placeholder="Zweite Zahl">
+
+    <button onclick="berechnen()">Berechnen</button>
+
+    <div id="ergebnis"></div>
+
+    <script>
+        function berechnen() {
+            const zahl1 = parseFloat(document.getElementById("zahl1").value);
+            const operator = document.getElementById("operator").value;
+            const zahl2 = parseFloat(document.getElementById("zahl2").value);
+
+            if (isNaN(zahl1) || isNaN(zahl2)) {
+                document.getElementById("ergebnis").textContent =
+                    "Bitte gib zwei Zahlen ein.";
+                return;
+            }
+
+            let ergebnis;
+
+            if (operator === "+") {
+                ergebnis = zahl1 + zahl2;
+            } else if (operator === "-") {
+                ergebnis = zahl1 - zahl2;
+            } else if (operator === "*") {
+                ergebnis = zahl1 * zahl2;
+            } else if (operator === "/") {
+                if (zahl2 === 0) {
+                    document.getElementById("ergebnis").textContent =
+                        "Division durch 0 ist nicht möglich.";
+                    return;
+                }
+                ergebnis = zahl1 / zahl2;
+            }
+
+            document.getElementById("ergebnis").textContent =
+                "Ergebnis: " + ergebnis;
+        }
+    </script>
+
+</body>
+</html>
