@@ -1,4 +1,4 @@
-print("Kleiner Taschenrechner")
+print("Taschenrechner")
 print("-----------------------")
 
 zahl1 = float(input("Erste Zahl: "))
